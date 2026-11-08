@@ -1,3 +1,4 @@
+
 # Splunk SIEM & Log Analysis
 
 **Splunk Free · Azure VM · SOC Skills · Security Monitoring**
@@ -106,6 +107,48 @@ Running Splunk on an Azure VM means it stays running when your laptop is closed,
 | Inbound NSG ports | 8000 (Splunk web UI) · 9997 (forwarder input) · 22 (SSH) |
 
 Open port 8000 and port 22 to your IP address only. Open port 9997 to the VNet address range only (10.0.0.0/16 or similar) so only your other Azure VMs can send logs to it — not the public internet.
+
+### How to SSH into your Linux VM
+
+SSH (Secure Shell) is how you connect to and control a Linux VM remotely using a terminal. The tool you use to SSH depends on your operating system.
+
+#### Mac or Linux — no extra tools needed
+
+SSH is built into macOS and Linux. Open Terminal and run:
+
+**Step 1 — Fix the key file permissions first (required or SSH will refuse to connect)**
+
+When you download a .pem key file from Azure or AWS, it arrives with permissions that are too open — other users on your machine can read it. SSH will refuse to use the key until you lock it down. If you skip this step you will see the UNPROTECTED PRIVATE KEY FILE warning and the connection will be denied.
+
+```bash
+# Navigate to where you downloaded the key (usually Downloads)
+cd ~/Downloads
+# Set permissions so only you can read the key file
+chmod 400 yourkey.pem
+```
+
+What happens if you skip this step:
+
+```text
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'yourkey.pem' are too open.
+Load key "yourkey.pem": bad permissions
+azureuser@20.55.24.67: Permission denied (publickey).
+```
+
+**Step 2 — Connect once permissions are fixed**
+
+```bash
+ssh -i yourkey.pem azureuser@YOUR_VM_PUBLIC_IP
+```
+
+Replace yourusername with the admin username you set when creating the VM in Azure, and YOUR_VM_PUBLIC_IP with the public IP address shown in the Azure portal. Type yes when prompted about the host fingerprint, then enter your password.
+
+#### Windows — install PuTTY first
+
+Windows does not have a built-in SSH client that is easy to use for this purpose. PuTTY is the most widely used free SSH client for Windows. Download and install it before proceeding.
 
 **Installing PuTTY:**
 
@@ -571,3 +614,4 @@ index=windows_logs sourcetype=WinEventLog:Security EventCode=4697
 # Services pointing to temp directories or unusual paths are suspicious
 # Cross-reference Account_Name to see which user installed the service
 ```
+
