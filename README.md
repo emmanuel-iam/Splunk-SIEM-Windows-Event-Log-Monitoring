@@ -91,9 +91,10 @@ Go to temp-mail.org/en/ — a temporary email address is generated automatically
 
 Paste the temp-mail address into the Email field. Fill in the remaining fields (First Name, Last Name, Company, Job Title, Phone) with any dummy information — for example: John Smith, Home Lab, Student, 555-0100. These fields are not verified.
 
-**Step 3 — Confirm your account:**
-
-Splunk will send a confirmation email. Go back to the temp-mail.org tab — the email will appear in the inbox automatically within a minute. Click the confirmation link inside it. You can now log in and access the download page.
+<img width="1096" height="467" alt="1" src="https://github.com/user-attachments/assets/d70036f3-3a69-4955-8c2e-6e4ef719df6a" />
+<img width="1083" height="428" alt="2" src="https://github.com/user-attachments/assets/e5adf15a-9dde-4758-8ec0-784d2bdb9fd6" />
+<img width="1102" height="413" alt="3" src="https://github.com/user-attachments/assets/372c6078-19c8-4266-9ea3-bbcb49e137f4" />
+<img width="986" height="626" alt="4" src="https://github.com/user-attachments/assets/25891000-3644-4957-a7c2-51c07985a845" />
 
 ### Deploy on an Azure VM (Recommended)
 
@@ -105,6 +106,15 @@ Running Splunk on an Azure VM means it stays running when your laptop is closed,
 | Size | Standard_B2s (2 vCPU, 4GB RAM minimum — Splunk requires at least 4GB) |
 | Disk | 30GB minimum |
 | Inbound NSG ports | 8000 (Splunk web UI) · 9997 (forwarder input) · 22 (SSH) |
+
+<img width="1933" height="1094" alt="1" src="https://github.com/user-attachments/assets/49f4cca3-b197-4725-a0b9-5ac7f154ee69" />
+<img width="1100" height="584" alt="2" src="https://github.com/user-attachments/assets/69cf0f09-d011-4ed0-a530-326191315004" />
+<img width="1115" height="578" alt="3" src="https://github.com/user-attachments/assets/35109246-6042-4b5f-9e10-a0eecd54a567" />
+<img width="1071" height="614" alt="4" src="https://github.com/user-attachments/assets/bcdf60eb-6e6d-45bf-9495-b1c3e15559c0" />
+<img width="857" height="619" alt="5" src="https://github.com/user-attachments/assets/5041ec70-b115-4fb6-b754-24775a2d9a08" />
+<img width="296" height="209" alt="6" src="https://github.com/user-attachments/assets/d9012ff7-c777-45f1-b0c8-4618babc173c" />
+<img width="1109" height="399" alt="7" src="https://github.com/user-attachments/assets/7de85c32-379e-40d4-94f6-8f15aedc2418" />
+
 
 Open port 8000 and port 22 to your IP address only. Open port 9997 to the VNet address range only (10.0.0.0/16 or similar) so only your other Azure VMs can send logs to it — not the public internet.
 
